@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+   <head>  
+        <style>
+            body {
+                background-color: lightblue;
+            }
+        
+            img{
+                width:250px;
+            }
+
+            img {
+                opacity: 1;
+                filter: alpha(opacity=50); /* For IE8 and earlier */
+            }
+
+            * {
+               box-sizing: border-box;
+            }
+
+            .header {
+                background-color: #f1f1f1;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .topnav {
+                overflow: hidden;
+                background-color: #333;
+            } 
+
+            .topnav a {
+                float: left;
+                display: block;
+               color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            .column {
+                float: left;
+                width: 33.33%;
+                padding: 15px;
+            }
+
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            @media (max-width:600px) {
+                .column {
+                width: 100%;
+            }
+            }
+
+            img {
+                border-radius: 50%;
+            }
+  
+        </style>
+        <script>
+            function purchase(){
+                var q1=document.getElementById("q1");
+                var q2=document.getElementById("q2");
+                var q3=document.getElementById("q3");
+                var q4=document.getElementById("q4");
+                var q5=document.getElementById("q5");
+                var q6=document.getElementById("q6");
+                var output=document.getElementById("output");
+
+                var p1=(699.99)
+                var p2=(499.99)
+                var p3=(599.99)
+                var p4=(549.99)
+                var p5=(299.99)
+                var p6=(299.99)
+
+                var subtotal=(parseInt(q1.value)*p1)+(parseInt(q2.value)*p2)+(parseInt(q3.value)*p3)+(parseInt(q4.value)*p4)+(parseInt(q5.value)*p5)+(parseInt(q6.value)*p6)
+                var taxrate=0.0875
+                var tax=subtotal*taxrate
+                var shipping;
+            
+                var build="";        
+                build+="Tax: $" + (tax.toFixed(2)) +"<br>";
+                build+="Subtotal: $" + (subtotal.toFixed(2)) + "<br>";
+
+                if(subtotal>=299.99 && subtotal<=599.99){
+                    shipping=0.18
+                    build += "Your shipping fee is 18% of the subtotal" + "<br>";
+                }else if(subtotal>=600 && subtotal<=999.99){
+                    shipping=0.16
+                    build += "Your shipping fee is 16% of the subtotal" + "<br>";
+                }else if(subtotal>=1000 && subtotal<=1299.99){
+                    shipping=0.15
+                    build += "Your shipping fee is 15% of the subtotal" + "<br>";
+                }else if(subtotal>=1300 && subtotal<=1599.99){
+                    shipping=0.13
+                    build += "Your shipping fee is 13% of the subtotal"  + "<br>";             
+                }else if(subtotal>=1600 && subtotal<=1999.99){
+                    shipping=0.10
+                    build += "Your shipping fee is 10% of the subtotal" + "<br>";                                  
+                }else if(subtotal>=2000){
+                    shipping=0
+                    build += "FREE SHIPPING :))))" + "<br>";
+                }
+
+                var shippingfee=subtotal*shipping;
+                var total=shippingfee + tax + subtotal;
+
+                build+="Shipping Fee: $" + (shippingfee.toFixed(2)) + "<br>";
+                build+="----------------------------------------------------<br>";
+                build+="Your total is $" + (total.toFixed(2));
+                output.innerHTML=build;
+                info(purchase)
+                CompanyProfit(subtotal);
+            }
+            function CompanyProfit(subtotal){
+                var wholesale=(parseInt(q1.value)*499.99)+(parseInt(q2.value)*249.99)+(parseInt(q3.value)*399.99)+(parseInt(q4.value)*299.99)+(parseInt(q5.value)*149.99)+(parseInt(q6.value)*149.99)
+                var profit=subtotal-wholesale;
+                var Profit="";
+                Profit+="Subtotal is: $" + subtotal.toFixed(2) + "\n";
+                Profit+="Wholesale is: $" + wholesale.toFixed(2) + "\n";
+                Profit+="----------------------------------------------------\n";
+                Profit+="Company Profit Made: $" + profit.toFixed(2)
+                console.log(Profit);
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+           <h1>N&#8709; Gore PEACEFULWORLD</h1>
+        </div>
+
+        <div class="topnav">
+            <a href="#">Model Info: Name=Joker Xue Height=173cm or 5'8     Weight=55kg or 120lbs      Size=M</a><br>
+        </div>
+
+        <div class="row">
+            <div class="column">
+            <img src="image\dangerous people zip up front.jpg">
+            <img src="image\dangerous people zip up model.jpg"><br>
+            <h2>DSP ZIP UP </h2>
+            <span>$699.99</span>
+            <p>
+            Good for the F/W
+            </p>
+            <form>
+                SIZE:
+                <select>
+                <option value="BLANK">__</option>                
+                <option value="XSMALL">XS</option>
+                <option value="SMALL">S</option> 
+                <option value="MEDIUM">M</option> 
+                <option value="LARGE">L</option>  
+                <option value="XLARGE">XL</option>     
+                </select>             
+            </form>
+            <input id="q1" placeholder="Quantity" type="text">
+            <button onclick="purchase()">
+                Buy
+            </button>
+        </div>
+
+        <div class="column">
+            <img src="image\dangerous people hoodie.jpg">
+            <img src="image\dangerous people hoodie model.jpg"><br>
+            <h2>DSP HOODIE </h2>
+            <span>$499.99</span>
+            <p>
+            Good for the F/W
+            </p>
+            <form>
+                SIZE:
+                <select>
+                <option value="BLANK">__</option>                
+                <option value="XSMALL">XS</option>
+                <option value="SMALL">S</option> 
+                <option value="MEDIUM">M</option> 
+                <option value="LARGE">L</option>  
+                <option value="XLARGE">XL</option>     
+                </select>             
+            </form>
+            <input id="q2" placeholder="Quantity" type="text">
+            <button onclick="purchase()">
+                Buy
+            </button>
+        </div>
+
+        <div class="column">
+          <img src="image\dangerous people jacket front.jpg">
+          <img src="image\dangerous people jacket model.jpg"><br>
+          <h2>DSP JACKET </h2>
+          <span>$599.99</span>
+          <p>
+          Good for the F/W
+          </p>
+            <form>
+                SIZE:
+                <select>
+                <option value="BLANK">__</option>                
+                <option value="XSMALL">XS</option>
+                <option value="SMALL">S</option> 
+                <option value="MEDIUM">M</option> 
+                <option value="LARGE">L</option>  
+                <option value="XLARGE">XL</option>     
+                </select>             
+            </form>
+          <input id="q3" placeholder="Quantity" type="text">
+          <button onclick="purchase()">
+              Buy
+          </button>
+       </div>
+
+       <div class="column">
+        <img src="image\dangerous people tee front.jpg">
+           <img src="image\dangerous people tee model.jpg"><br>
+           <h2>DSP SWEATER  </h2>          
+           <span>$549.99</span>
+           <p>
+           Good for the F/W
+           </p>
+            <form>
+                SIZE:
+                <select>
+                <option value="BLANK">__</option>                
+                <option value="XSMALL">XS</option>
+                <option value="SMALL">S</option> 
+                <option value="MEDIUM">M</option> 
+                <option value="LARGE">L</option>  
+                <option value="XLARGE">XL</option>     
+                </select>             
+            </form>
+           <input id="q4" placeholder="Quantity" type="text">
+           <button onclick="purchase()">
+               Buy
+           </button>
+        </div>
+
+      <div class="column">
+          <img src="image\dangerouspeople tee pink back.jpg">
+          <img src="image\dangerouspeople tee white model.jpg"><br>
+          <h2>DSP FAKE SMILE TEE  </h2>          
+          <span>$299.99</span>
+          <p>
+          Good for the S/S
+          </p>
+            <form>
+                SIZE:
+                <select>
+                <option value="BLANK">__</option>                
+                <option value="XSMALL">XS</option>
+                <option value="SMALL">S</option> 
+                <option value="MEDIUM">M</option> 
+                <option value="LARGE">L</option>  
+                <option value="XLARGE">XL</option>     
+                </select>             
+            </form>
+          <input id="q5" placeholder="Quantity" type="text">
+          <button onclick="purchase()">
+              Buy
+          </button>
+      </div>
+
+      <div class="column">
+          <img src="image\dangerous white tee back.jpg">
+          <img src="image\dangerous tee model both.jpg"><br>
+          <h2>DSP TEE  </h2>          
+          <span>$299.99</span>
+          <p>
+          Good for the S/S
+          </p>
+            <form>
+                SIZE:
+                <select>
+                <option value="BLANK">__</option>                
+                <option value="XSMALL">XS</option>
+                <option value="SMALL">S</option> 
+                <option value="MEDIUM">M</option> 
+                <option value="LARGE">L</option>  
+                <option value="XLARGE">XL</option>     
+                </select>             
+            </form>
+          <input id="q6" placeholder="Quantity" type="text">
+          <button onclick="purchase()">
+              Buy
+          </button>
+        </div>
+
+        <div id="output"></div>
+    </body>
+</html>
+
+
+
+
+
